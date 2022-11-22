@@ -15,6 +15,10 @@ class ViewController: UIViewController {
     
     let testArray = ["asdgas", "asdgas", "adsgas"]
     
+    let mySearch: String = "=pizza"
+    
+    var arrayOfRecipes:[Result] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,7 +28,7 @@ class ViewController: UIViewController {
             "X-RapidAPI-Host": "tasty.p.rapidapi.com"
         ]
 
-        let request = NSMutableURLRequest(url: NSURL(string: "https://tasty.p.rapidapi.com/recipes/list?from=0&size=10&q=cheesecake")! as URL,
+        let request = NSMutableURLRequest(url: NSURL(string: "https://tasty.p.rapidapi.com/recipes/list?from=0&size=10&q\(mySearch)")! as URL,
                                                 cachePolicy: .useProtocolCachePolicy,
                                             timeoutInterval: 10.0)
         request.httpMethod = "GET"
@@ -40,15 +44,16 @@ class ViewController: UIViewController {
                 
                 do {
                     let resipis = try decode.decode(Recipes.self, from: data!)
-                    
-                    print(resipis)
+                    self.arrayOfRecipes = resipis.results
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
                 } catch {
                     print(error)
                 }
                 
             }
             
-                
                 print("ITS OOOOKKEEEYY")
             
         })
@@ -56,6 +61,7 @@ class ViewController: UIViewController {
 
         dataTask.resume()
         
+
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -66,12 +72,12 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return testArray.count
+        arrayOfRecipes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = testArray[indexPath.row]
+        cell.textLabel?.text = self.arrayOfRecipes[indexPath.row].name
         return cell
     }
     
