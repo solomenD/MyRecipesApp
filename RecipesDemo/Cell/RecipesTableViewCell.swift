@@ -21,7 +21,6 @@ class RecipesTableViewCell: UITableViewCell {
 
     func configure(item: Result) {
         let imageURL = URL(string: item.thumbnail_url ?? "images-3")
-        print(item.thumbnail_url)
         recipeImageView.sd_setImage(with: imageURL)
         recipeNameLabel.contentMode = .scaleToFill
         recipeNameLabel.numberOfLines = 2
