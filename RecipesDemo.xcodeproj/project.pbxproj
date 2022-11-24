@@ -11,9 +11,10 @@
 		67328744292D128000D26B47 /* ResipesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67328743292D128000D26B47 /* ResipesModel.swift */; };
 		67328748292D1B8600D26B47 /* Exsample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67328747292D1B8600D26B47 /* Exsample.swift */; };
 		6732874A292D73ED00D26B47 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 67328749292D73ED00D26B47 /* Podfile */; };
+		67B0B66E292F7C050005C189 /* RecipeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B0B66D292F7C050005C189 /* RecipeDetailsViewController.swift */; };
 		67BF97CD292D0D64005B8326 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BF97CC292D0D64005B8326 /* AppDelegate.swift */; };
 		67BF97CF292D0D64005B8326 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BF97CE292D0D64005B8326 /* SceneDelegate.swift */; };
-		67BF97D1292D0D64005B8326 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BF97D0292D0D64005B8326 /* ViewController.swift */; };
+		67BF97D1292D0D64005B8326 /* RecipesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BF97D0292D0D64005B8326 /* RecipesListViewController.swift */; };
 		67BF97D4292D0D64005B8326 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67BF97D2292D0D64005B8326 /* Main.storyboard */; };
 		67BF97D6292D0D66005B8326 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67BF97D5292D0D66005B8326 /* Assets.xcassets */; };
 		67BF97D9292D0D66005B8326 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67BF97D7292D0D66005B8326 /* LaunchScreen.storyboard */; };
@@ -25,10 +26,11 @@
 		67328743292D128000D26B47 /* ResipesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResipesModel.swift; sourceTree = "<group>"; };
 		67328747292D1B8600D26B47 /* Exsample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exsample.swift; sourceTree = "<group>"; };
 		67328749292D73ED00D26B47 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
+		67B0B66D292F7C050005C189 /* RecipeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsViewController.swift; sourceTree = "<group>"; };
 		67BF97C9292D0D64005B8326 /* RecipesDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipesDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67BF97CC292D0D64005B8326 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		67BF97CE292D0D64005B8326 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		67BF97D0292D0D64005B8326 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		67BF97D0292D0D64005B8326 /* RecipesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesListViewController.swift; sourceTree = "<group>"; };
 		67BF97D3292D0D64005B8326 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		67BF97D5292D0D66005B8326 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		67BF97D8292D0D66005B8326 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -86,7 +88,8 @@
 				67328742292D126800D26B47 /* Models */,
 				67BF97CC292D0D64005B8326 /* AppDelegate.swift */,
 				67BF97CE292D0D64005B8326 /* SceneDelegate.swift */,
-				67BF97D0292D0D64005B8326 /* ViewController.swift */,
+				67BF97D0292D0D64005B8326 /* RecipesListViewController.swift */,
+				67B0B66D292F7C050005C189 /* RecipeDetailsViewController.swift */,
 				67BF97D2292D0D64005B8326 /* Main.storyboard */,
 				67328749292D73ED00D26B47 /* Podfile */,
 				67BF97D5292D0D66005B8326 /* Assets.xcassets */,
@@ -239,9 +242,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67BF97D1292D0D64005B8326 /* ViewController.swift in Sources */,
+				67BF97D1292D0D64005B8326 /* RecipesListViewController.swift in Sources */,
 				67328744292D128000D26B47 /* ResipesModel.swift in Sources */,
 				67BF97CD292D0D64005B8326 /* AppDelegate.swift in Sources */,
+				67B0B66E292F7C050005C189 /* RecipeDetailsViewController.swift in Sources */,
 				67328748292D1B8600D26B47 /* Exsample.swift in Sources */,
 				67BF97CF292D0D64005B8326 /* SceneDelegate.swift in Sources */,
 				67FB9B85292D8D4200848849 /* RecipesTableViewCell.swift in Sources */,

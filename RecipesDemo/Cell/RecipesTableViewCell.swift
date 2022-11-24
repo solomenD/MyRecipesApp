@@ -25,6 +25,8 @@ class RecipesTableViewCell: UITableViewCell {
         recipeNameLabel.contentMode = .scaleToFill
         recipeNameLabel.numberOfLines = 2
         recipeNameLabel.text = item.name
+        recipeImageView.layer.cornerRadius = 8
+        
     }
     
 }

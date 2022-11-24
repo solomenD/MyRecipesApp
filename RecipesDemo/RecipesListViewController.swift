@@ -8,7 +8,7 @@
 import UIKit
 
 
-class ViewController: UIViewController {
+class RecipesListViewController: UIViewController {
     
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -31,7 +31,7 @@ class ViewController: UIViewController {
             "X-RapidAPI-Host": "tasty.p.rapidapi.com"
         ]
         
-        let request = NSMutableURLRequest(url: NSURL(string: "https://tasty.p.rapidapi.com/recipes/list?from=0&size=10&q\(mySearch)")! as URL,
+        let request = NSMutableURLRequest(url: NSURL(string: "https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q\(mySearch)")! as URL,
                                           cachePolicy: .useProtocolCachePolicy,
                                           timeoutInterval: 10.0)
         request.httpMethod = "GET"
@@ -50,6 +50,7 @@ class ViewController: UIViewController {
                     self.arrayOfRecipes = resipis.results
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
+                        print(resipis.results[16].description)
                     }
                 } catch {
                     print(error)
@@ -64,7 +65,6 @@ class ViewController: UIViewController {
         
         dataTask.resume()
         
-        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -74,29 +74,23 @@ class ViewController: UIViewController {
     
 }
 
-extension ViewController: UITableViewDataSource {
-    
-}
 
-extension ViewController: UITableViewDelegate {
+extension RecipesListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         arrayOfRecipes.count
     }
    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //
+        print(arrayOfRecipes[indexPath.row].name!)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecipesTableViewCell", for: indexPath) as? RecipesTableViewCell else {return UITableViewCell()}
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//
-//
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecipesTableViewCell", for: indexPath) as? RecipesTableViewCell else { return UITableViewCell() }
+
 
         let item = arrayOfRecipes[indexPath.row]
         cell.configure(item: item)
-        cell.selectionStyle = .none
+        cell.selectionStyle = .blue
         
         
         return cell
