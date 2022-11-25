@@ -31,7 +31,7 @@ class RecipesListViewController: UIViewController {
             "X-RapidAPI-Host": "tasty.p.rapidapi.com"
         ]
         
-        let request = NSMutableURLRequest(url: NSURL(string: "https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q\(mySearch)")! as URL,
+        let request = NSMutableURLRequest(url: NSURL(string: "https://tasty.p.rapidapi.com/recipes/list?from=0&size=200&q\(mySearch)")! as URL,
                                           cachePolicy: .useProtocolCachePolicy,
                                           timeoutInterval: 10.0)
         request.httpMethod = "GET"
@@ -50,7 +50,6 @@ class RecipesListViewController: UIViewController {
                     self.arrayOfRecipes = resipis.results
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
-                        print(resipis.results[16].description)
                     }
                 } catch {
                     print(error)
@@ -81,7 +80,18 @@ extension RecipesListViewController: UITableViewDelegate, UITableViewDataSource 
     }
    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(arrayOfRecipes[indexPath.row].name!)
+        
+        let namelabel = arrayOfRecipes[indexPath.row].name!
+        let imageURL = arrayOfRecipes[indexPath.row].thumbnail_url!
+        let detailelabel = arrayOfRecipes[indexPath.row].description ?? "none"
+        let main = UIStoryboard(name: "Main", bundle: nil)
+        
+        guard let viewController = main.instantiateViewController(withIdentifier: "RecipeDetailsViewController") as? RecipeDetailsViewController else { return }
+        viewController.titleLable = namelabel
+        viewController.imageString = imageURL
+        viewController.detailslabel = detailelabel
+        navigationController?.pushViewController(viewController, animated: true)
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
