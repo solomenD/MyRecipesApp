@@ -69,6 +69,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XbG-t2-wgz">
+                                <rect key="frame" x="16" y="95" width="361" height="230"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="230" id="Dzo-hh-D7K"/>
+                                </constraints>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="40x-n9-WvN">
                                 <rect key="frame" x="16" y="391" width="361" height="300"/>
                                 <constraints>
@@ -78,12 +84,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XbG-t2-wgz">
-                                <rect key="frame" x="16" y="95" width="361" height="230"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="230" id="Dzo-hh-D7K"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yO9-g2-8ik"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

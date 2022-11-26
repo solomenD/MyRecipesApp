@@ -33,7 +33,7 @@ class RecipeDetailsViewController: UIViewController {
         imageRecipe.layer.shadowOpacity = 0.7
         imageRecipe.layer.shadowOffset = CGSize(width: 2.5, height: 2.5)
         imageRecipe.clipsToBounds = true
-        
+        navigationController?.navigationBar.isHidden = false
         
     }
     

@@ -25,7 +25,6 @@ class RecipesListViewController: UIViewController {
         
         
         
-        
         let headers = [
             "X-RapidAPI-Key": "3eb4b5a905msh63ca97e56b4c194p1e9b93jsna253a69a0357",
             "X-RapidAPI-Host": "tasty.p.rapidapi.com"
@@ -68,6 +67,13 @@ class RecipesListViewController: UIViewController {
         tableView.dataSource = self
         
         tableView.register(UINib(nibName: "RecipesTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipesTableViewCell")
+
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
     }
     
     
