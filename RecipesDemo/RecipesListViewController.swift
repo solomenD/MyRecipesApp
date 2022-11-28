@@ -16,7 +16,7 @@ class RecipesListViewController: UIViewController {
     
     let testArray = ["asdgas", "asdgas", "adsgas"]
     
-    let mySearch: String = "=pizza"
+    let mySearch: String = "=cheesecake"
     
     var arrayOfRecipes:[Result] = []
     
@@ -30,7 +30,7 @@ class RecipesListViewController: UIViewController {
             "X-RapidAPI-Host": "tasty.p.rapidapi.com"
         ]
         
-        let request = NSMutableURLRequest(url: NSURL(string: "https://tasty.p.rapidapi.com/recipes/list?from=0&size=200&q\(mySearch)")! as URL,
+        let request = NSMutableURLRequest(url: NSURL(string: "https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q\(mySearch)")! as URL,
                                           cachePolicy: .useProtocolCachePolicy,
                                           timeoutInterval: 10.0)
         request.httpMethod = "GET"
@@ -96,6 +96,7 @@ extension RecipesListViewController: UITableViewDelegate, UITableViewDataSource 
         viewController.titleLable = namelabel
         viewController.imageString = imageURL
         viewController.detailslabel = detailelabel
+        viewController.videoString = arrayOfRecipes[indexPath.row].video_url ?? ""
         navigationController?.pushViewController(viewController, animated: true)
         
     }

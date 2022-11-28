@@ -7,17 +7,21 @@
 
 import UIKit
 import SDWebImage
+import AVKit
 
 class RecipeDetailsViewController: UIViewController {
 
     @IBOutlet weak var titleLableRecipe: UILabel!
     @IBOutlet weak var imageRecipe: UIImageView!
-    
+    @IBOutlet weak var shadowView: UIView!
     @IBOutlet weak var DetailsLable: UILabel!
+    @IBOutlet weak var playerView: UIView!
+    @IBOutlet weak var videoButtonText: UIButton!
     
     var titleLable = ""
     var imageString = ""
     var detailslabel = ""
+    var videoString = ""
 
     
     override func viewDidLoad() {
@@ -28,15 +32,33 @@ class RecipeDetailsViewController: UIViewController {
         titleLableRecipe.text = titleLable
         imageRecipe.sd_setImage(with: imageURL)
         imageRecipe.layer.cornerRadius = 15
-        imageRecipe.layer.shadowColor = UIColor.black.cgColor
-        imageRecipe.layer.shadowRadius = 7.0
-        imageRecipe.layer.shadowOpacity = 0.7
-        imageRecipe.layer.shadowOffset = CGSize(width: 2.5, height: 2.5)
+        shadowView.layer.shadowColor = UIColor.black.cgColor
+        shadowView.layer.shadowRadius = 9.0
+        shadowView.layer.shadowOpacity = 0.7
+        shadowView.layer.shadowOffset = CGSize(width: 2.5, height: 2.5)
         imageRecipe.clipsToBounds = true
+        shadowView.layer.cornerRadius = 15
         navigationController?.navigationBar.isHidden = false
+        
         
     }
     
-
+    @IBAction func videoButton(_ sender: Any) {
+        
+        guard let videoURL = URL(string: videoString) else { return }
+        
+        let player = AVPlayer(url: videoURL)
+        let playerLayer = AVPlayerLayer(player: player)
+        playerLayer.frame = self.playerView.bounds
+        self.playerView.layer.addSublayer(playerLayer)
+        player.play()
+        self.videoButtonText.isHidden = true
+        if self.videoButtonText.isHidden {
+            NSLayoutConstraint.activate([
+                playerView.topAnchor.constraint(equalTo: DetailsLable.bottomAnchor, constant: 8)
+            ])
+        }
+    }
+    
 
 }
