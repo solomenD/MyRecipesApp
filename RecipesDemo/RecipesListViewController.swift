@@ -8,29 +8,36 @@
 import UIKit
 
 
-class RecipesListViewController: UIViewController {
+class NetworkService {
+    private init() { }
+    static let shared = NetworkService()
     
+    func loadRecipes() {
+        
+    }
+}
+
+class RecipesListViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
-    let testArray = ["asdgas", "asdgas", "adsgas"]
-    
-    let mySearch: String = "=cheesecake"
+    var filtredData: String = "pizza"
     
     var arrayOfRecipes:[Result] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NetworkService.shared.loadRecipes()
         
-        
+        // Constants
         let headers = [
             "X-RapidAPI-Key": "3eb4b5a905msh63ca97e56b4c194p1e9b93jsna253a69a0357",
             "X-RapidAPI-Host": "tasty.p.rapidapi.com"
         ]
         
-        let request = NSMutableURLRequest(url: NSURL(string: "https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q\(mySearch)")! as URL,
+        let request = NSMutableURLRequest(url: NSURL(string: "https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q=\(filtredData)")! as URL,
                                           cachePolicy: .useProtocolCachePolicy,
                                           timeoutInterval: 10.0)
         request.httpMethod = "GET"
@@ -65,10 +72,12 @@ class RecipesListViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        searchBar.delegate = self
         
-        tableView.register(UINib(nibName: "RecipesTableViewCell", bundle: nil), forCellReuseIdentifier: "RecipesTableViewCell")
-
+        // UITableView extension for registering cells
         
+        let cellIdentifier = "\(RecipesTableViewCell.self)"
+        tableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,14 +85,14 @@ class RecipesListViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
     }
     
-    
 }
-
 
 extension RecipesListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         arrayOfRecipes.count
     }
+    
+    // Router / Coordinator
    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -104,15 +113,24 @@ extension RecipesListViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecipesTableViewCell", for: indexPath) as? RecipesTableViewCell else {return UITableViewCell()}
 
-
         let item = arrayOfRecipes[indexPath.row]
         cell.configure(item: item)
         cell.selectionStyle = .blue
-        
         
         return cell
         
     }
     
-    
+}
+
+extension RecipesListViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.filtredData.removeAll()
+        
+        guard searchText != "" else {
+            print("Empty search")
+            return
+        }
+        
+    }
 }

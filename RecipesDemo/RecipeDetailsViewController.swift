@@ -17,29 +17,38 @@ class RecipeDetailsViewController: UIViewController {
     @IBOutlet weak var DetailsLable: UILabel!
     @IBOutlet weak var playerView: UIView!
     @IBOutlet weak var videoButtonText: UIButton!
+    @IBOutlet weak var tableViewIngradients: UITableView!
     
     var titleLable = ""
     var imageString = ""
     var detailslabel = ""
     var videoString = ""
-
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configure()
+    }
+    
+    
+    private func configure() {
         let imageURL = URL(string: imageString)
         DetailsLable.text = detailslabel
         titleLableRecipe.text = titleLable
         imageRecipe.sd_setImage(with: imageURL)
         imageRecipe.layer.cornerRadius = 15
+        
+        shadowView.layer.cornerRadius = 15
         shadowView.layer.shadowColor = UIColor.black.cgColor
         shadowView.layer.shadowRadius = 9.0
         shadowView.layer.shadowOpacity = 0.7
         shadowView.layer.shadowOffset = CGSize(width: 2.5, height: 2.5)
-        imageRecipe.clipsToBounds = true
-        shadowView.layer.cornerRadius = 15
-        navigationController?.navigationBar.isHidden = false
         
+        imageRecipe.clipsToBounds = true
+        videoButtonText.layer.cornerRadius = 15
+        
+        navigationController?.navigationBar.isHidden = false
         
     }
     
@@ -59,6 +68,5 @@ class RecipeDetailsViewController: UIViewController {
             ])
         }
     }
-    
 
 }
