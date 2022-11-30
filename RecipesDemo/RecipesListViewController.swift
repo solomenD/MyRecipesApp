@@ -38,7 +38,7 @@ class RecipesListViewController: UIViewController {
         let cellIdentifier = "\(RecipesTableViewCell.self)"
         tableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
     }
-    
+    //In other Class
     func fetchRecipeData(query: String){
         
         let headers = [
