@@ -16,13 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ynE-Oh-r9i">
-                                <rect key="frame" x="0.0" y="115" width="393" height="737"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="737" id="HEg-Cb-q8p"/>
-                                </constraints>
-                            </tableView>
                             <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="Vrb-qu-NyA">
                                 <rect key="frame" x="0.0" y="59" width="393" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -30,19 +23,25 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="ZhW-kc-L3Q"/>
                                 </connections>
                             </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ynE-Oh-r9i">
+                                <rect key="frame" x="0.0" y="115" width="393" height="737"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ynE-Oh-r9i" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="4Ec-3d-Ygi"/>
                             <constraint firstItem="ynE-Oh-r9i" firstAttribute="leading" secondItem="Vrb-qu-NyA" secondAttribute="leading" id="9RG-gi-rEj"/>
+                            <constraint firstItem="Vrb-qu-NyA" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="59" id="Db8-nv-lWr"/>
+                            <constraint firstItem="ynE-Oh-r9i" firstAttribute="top" secondItem="Vrb-qu-NyA" secondAttribute="bottom" id="H5c-N8-OsO"/>
                             <constraint firstItem="ynE-Oh-r9i" firstAttribute="trailing" secondItem="Vrb-qu-NyA" secondAttribute="trailing" id="LO0-hy-wa1"/>
-                            <constraint firstItem="ynE-Oh-r9i" firstAttribute="top" secondItem="Vrb-qu-NyA" secondAttribute="bottom" id="VL6-eS-HBf"/>
                             <constraint firstItem="ynE-Oh-r9i" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="m89-VO-Whv"/>
                             <constraint firstAttribute="bottom" secondItem="ynE-Oh-r9i" secondAttribute="bottom" id="x0M-xa-J7a"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="XTz-rB-hKD"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="searchBar" destination="Vrb-qu-NyA" id="oYZ-SG-dGh"/>
                         <outlet property="tableView" destination="ynE-Oh-r9i" id="w3P-qX-F5G"/>

@@ -22,22 +22,34 @@ class RecipesListViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
-    var filtredData: String = "pizza"
-    
     var arrayOfRecipes:[Result] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         NetworkService.shared.loadRecipes()
+                
+        tableView.delegate = self
+        tableView.dataSource = self
+        searchBar.delegate = self
         
-        // Constants
+        // UITableView extension for registering cells
+        
+        let cellIdentifier = "\(RecipesTableViewCell.self)"
+        tableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
+    }
+    
+    func fetchRecipeData(query: String){
+        
         let headers = [
             "X-RapidAPI-Key": "3eb4b5a905msh63ca97e56b4c194p1e9b93jsna253a69a0357",
             "X-RapidAPI-Host": "tasty.p.rapidapi.com"
         ]
         
-        let request = NSMutableURLRequest(url: NSURL(string: "https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&q=\(filtredData)")! as URL,
+        let baseURL = "https://tasty.p.rapidapi.com/recipes/list?from=0&size="
+        let countOfResults = 20
+        
+        let request = NSMutableURLRequest(url: NSURL(string: "\(baseURL)\(String(countOfResults))&q=\(query)")! as URL,
                                           cachePolicy: .useProtocolCachePolicy,
                                           timeoutInterval: 10.0)
         request.httpMethod = "GET"
@@ -69,16 +81,8 @@ class RecipesListViewController: UIViewController {
         print(dataTask)
         
         dataTask.resume()
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        searchBar.delegate = self
-        
-        // UITableView extension for registering cells
-        
-        let cellIdentifier = "\(RecipesTableViewCell.self)"
-        tableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
     }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -124,13 +128,12 @@ extension RecipesListViewController: UITableViewDelegate, UITableViewDataSource 
 }
 
 extension RecipesListViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.filtredData.removeAll()
-        
-        guard searchText != "" else {
-            print("Empty search")
-            return
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        if let text = searchBar.text {
+            arrayOfRecipes = []
+            tableView.reloadData()
+            fetchRecipeData(query: text)
         }
-        
     }
 }
