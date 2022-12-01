@@ -28,6 +28,8 @@ class RecipesListViewController: UIViewController {
         super.viewDidLoad()
         
         NetworkService.shared.loadRecipes()
+        
+        fetchRecipeData(query: "pasta")
                 
         tableView.delegate = self
         tableView.dataSource = self
