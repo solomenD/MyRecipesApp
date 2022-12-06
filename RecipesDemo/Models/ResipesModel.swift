@@ -3,8 +3,8 @@
 import Foundation
 
 struct Recipes: Codable {
-    let count: Int
-    let results: [Result]
+    let count: Int?
+    let results: [Result]?
 }
 
 struct Result: Codable {
@@ -33,7 +33,7 @@ struct Instruction: Codable {
 struct Section: Codable {
     let components: [Component]?
     let name: String?
-    let position: Int
+    let position: Int?
 }
 
 

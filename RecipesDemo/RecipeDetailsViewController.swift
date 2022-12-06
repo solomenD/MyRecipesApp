@@ -8,6 +8,7 @@
 import UIKit
 import SDWebImage
 import AVKit
+import RealmSwift
 
 class RecipeDetailsViewController: UIViewController {
     
@@ -23,6 +24,9 @@ class RecipeDetailsViewController: UIViewController {
     var videoString = ""
     let imageHeart = UIImage(systemName: "heart")
     let imageHeartFill = UIImage(systemName: "heart.fill")
+    var save = SaveModels()
+    var items: Results<SaveModels>!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,24 +65,54 @@ class RecipeDetailsViewController: UIViewController {
        
         navigationController?.navigationBar.tintColor = .label
         
-        didTapForHeart()
+        let realm = try! Realm()
+        
+        print(Realm.Configuration.defaultConfiguration.fileURL)
+        
+        items = realm.objects(SaveModels.self)
+
+        let results = items.filter("name = '\(titleLable)'")
+
+     if results.count > 0 {
+         
+         rigthRedHeart(image: imageHeartFill!, color: .red, selector: #selector(didTapForHeart))
+         
+      } else {
+          
+          rigthRedHeart(image: imageHeart!, color: .label, selector: #selector(tapForHeart))
+          
+       }
         
     }
     
     @objc func tapForHeart() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: imageHeartFill,
-                                                                 style: .done,
-                                                                 target: self,
-                                                                 action: #selector(didTapForHeart))
-        self.navigationItem.rightBarButtonItem?.tintColor = .red
+        rigthRedHeart(image: imageHeartFill!, color: .red, selector: #selector(didTapForHeart))
+        
+        save.name = titleLable
+        save.imageString = imageString
+        save.videoString = videoString
+        save.contry = "us"
+        save.detailslabel = detailslabel
+        save.isItSave = true
+
+        let realm = try! Realm()
+
+        try! realm.write{
+            realm.add(save)
+        }
+        
     }
     
     @objc func didTapForHeart() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: imageHeart,
-                                                                 style: .done,
-                                                                 target: self,
-                                                                 action: #selector(tapForHeart))
-        self.navigationItem.rightBarButtonItem?.tintColor = .label
+        rigthRedHeart(image: imageHeart!, color: .label, selector: #selector(tapForHeart))
+        
+        //Dont Work
+        
+        let realm = try! Realm()
+        
+        try! realm.write{
+            realm.delete(save)
+        }
     }
     
     
@@ -113,4 +147,15 @@ class RecipeDetailsViewController: UIViewController {
 //        }
 //    }
     
+}
+
+
+extension RecipeDetailsViewController {
+    func rigthRedHeart(image: UIImage, color: UIColor, selector: Selector) {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: image,
+                                                                 style: .done,
+                                                                 target: self,
+                                                                 action: selector)
+        self.navigationItem.rightBarButtonItem?.tintColor = color
+    }
 }

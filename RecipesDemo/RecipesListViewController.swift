@@ -44,7 +44,7 @@ class RecipesListViewController: UIViewController {
     func fetchRecipeData(query: String){
         
         let headers = [
-            "X-RapidAPI-Key": "3eb4b5a905msh63ca97e56b4c194p1e9b93jsna253a69a0357",
+            "X-RapidAPI-Key": "eaf2601874msh7d7cb171c834291p1cfa96jsnef6d24d659ab",
             "X-RapidAPI-Host": "tasty.p.rapidapi.com"
         ]
         
@@ -67,7 +67,7 @@ class RecipesListViewController: UIViewController {
                 
                 do {
                     let resipis = try decode.decode(Recipes.self, from: data!)
-                    self.arrayOfRecipes = resipis.results
+                    self.arrayOfRecipes = resipis.results!
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }

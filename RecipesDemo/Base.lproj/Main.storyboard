@@ -153,7 +153,7 @@
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nDd-Hg-eIN">
-                                                <rect key="frame" x="159" y="450" width="75" height="75"/>
+                                                <rect key="frame" x="159" y="435" width="75" height="75"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="75" id="isF-GO-tmN"/>
                                                     <constraint firstAttribute="width" constant="75" id="tcl-va-WGW"/>
@@ -167,7 +167,7 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="nDd-Hg-eIN" firstAttribute="top" secondItem="40x-n9-WvN" secondAttribute="bottom" constant="104" id="1GY-Jw-DvJ"/>
+                                            <constraint firstItem="nDd-Hg-eIN" firstAttribute="top" secondItem="40x-n9-WvN" secondAttribute="bottom" constant="89" id="1GY-Jw-DvJ"/>
                                             <constraint firstAttribute="trailing" secondItem="40x-n9-WvN" secondAttribute="trailing" constant="16" id="CMb-Wf-7WQ"/>
                                             <constraint firstItem="40x-n9-WvN" firstAttribute="top" secondItem="bA1-r1-6pN" secondAttribute="bottom" constant="8" symbolic="YES" id="Ddd-2N-8An"/>
                                             <constraint firstItem="ckI-Kh-HW7" firstAttribute="top" secondItem="40x-n9-WvN" secondAttribute="bottom" constant="16" id="De0-Yg-Gfe"/>
