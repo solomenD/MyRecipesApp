@@ -18,6 +18,7 @@ class RecipeDetailsViewController: UIViewController {
     @IBOutlet weak var DetailsLable: UILabel!
     @IBOutlet weak var previewImage: UIImageView!
     @IBOutlet weak var playButton: UIButton!
+    
     var titleLable = ""
     var imageString = ""
     var detailslabel = ""
@@ -27,13 +28,14 @@ class RecipeDetailsViewController: UIViewController {
     var save = SaveModels()
     var items: Results<SaveModels>!
     
+    //Test
+    var list = [SaveModels]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configure()
     }
-    
     
     private func configure() {
         
@@ -54,7 +56,7 @@ class RecipeDetailsViewController: UIViewController {
         previewImage.layer.cornerRadius = 10
         
         imageRecipe.clipsToBounds = true
-                
+        
         if videoString == "" {
             playButton.setImage(UIImage(named: "xmark")?.withTintColor(.white), for: .normal)
         }else {
@@ -62,7 +64,7 @@ class RecipeDetailsViewController: UIViewController {
         }
         
         navigationController?.navigationBar.isHidden = false
-       
+        
         navigationController?.navigationBar.tintColor = .label
         
         let realm = try! Realm()
@@ -70,18 +72,18 @@ class RecipeDetailsViewController: UIViewController {
         print(Realm.Configuration.defaultConfiguration.fileURL)
         
         items = realm.objects(SaveModels.self)
-
-        let results = items.filter("name = '\(titleLable)'")
-
-     if results.count > 0 {
-         
-         rigthRedHeart(image: imageHeartFill!, color: .red, selector: #selector(didTapForHeart))
-         
-      } else {
-          
-          rigthRedHeart(image: imageHeart!, color: .label, selector: #selector(tapForHeart))
-          
-       }
+        
+        let results = items.filter("name contains '\(String(titleLable))' ")
+        
+        if results.count > 0 {
+            
+            rigthRedHeart(image: imageHeartFill!, color: .red, selector: #selector(didTapForHeart))
+            
+        } else {
+            
+            rigthRedHeart(image: imageHeart!, color: .label, selector: #selector(tapForHeart))
+            
+        }
         
     }
     
@@ -94,12 +96,13 @@ class RecipeDetailsViewController: UIViewController {
         save.contry = "us"
         save.detailslabel = detailslabel
         save.isItSave = true
-
+        
         let realm = try! Realm()
-
+        
         try! realm.write{
             realm.add(save)
         }
+        print(save.name)
         
     }
     
@@ -110,8 +113,10 @@ class RecipeDetailsViewController: UIViewController {
         
         let realm = try! Realm()
         
+        let results = items.filter("name contains '\(String(titleLable))' ")
+        
         try! realm.write{
-            realm.delete(save)
+            realm.delete(results)
         }
     }
     
@@ -126,8 +131,19 @@ class RecipeDetailsViewController: UIViewController {
             playerLayer.player?.play()
         }
     }
-    
-    //MARK: - Not working with format video ??
+}
+
+extension RecipeDetailsViewController {
+    func rigthRedHeart(image: UIImage, color: UIColor, selector: Selector) {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: image,
+                                                                 style: .done,
+                                                                 target: self,
+                                                                 action: selector)
+        self.navigationItem.rightBarButtonItem?.tintColor = color
+    }
+}
+
+//MARK: - Not working with format video ??
 //    func getthumbnailFromImage(url: URL, completion: @escaping ((_ image: UIImage)-> Void)) {
 //        DispatchQueue.global ().async {
 //            let asset = AVAsset (url: url)
@@ -146,16 +162,4 @@ class RecipeDetailsViewController: UIViewController {
 //            }
 //        }
 //    }
-    
-}
 
-
-extension RecipeDetailsViewController {
-    func rigthRedHeart(image: UIImage, color: UIColor, selector: Selector) {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: image,
-                                                                 style: .done,
-                                                                 target: self,
-                                                                 action: selector)
-        self.navigationItem.rightBarButtonItem?.tintColor = color
-    }
-}
