@@ -28,6 +28,7 @@ class RecipeDetailsViewController: UIViewController {
     var save = SaveModels()
     var items: Results<SaveModels>!
     
+    
     //Test
     var list = [SaveModels]()
     
@@ -69,6 +70,7 @@ class RecipeDetailsViewController: UIViewController {
         
         let realm = try! Realm()
         
+        //MARK: - To open realm studio
         print(Realm.Configuration.defaultConfiguration.fileURL)
         
         items = realm.objects(SaveModels.self)
@@ -102,7 +104,6 @@ class RecipeDetailsViewController: UIViewController {
         try! realm.write{
             realm.add(save)
         }
-        print(save.name)
         
     }
     
@@ -118,6 +119,9 @@ class RecipeDetailsViewController: UIViewController {
         try! realm.write{
             realm.delete(results)
         }
+        
+//        SavedRecipesViewController().self.tableView.reloadData()
+        
     }
     
     

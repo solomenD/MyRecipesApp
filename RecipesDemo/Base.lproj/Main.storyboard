@@ -60,6 +60,9 @@
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xHT-Tq-rmu">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="mDB-5r-8NC" kind="relationship" relationship="rootViewController" id="trf-Bj-Dp0"/>
                     </connections>
@@ -217,7 +220,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aDp-Xs-DKw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1765.6488549618321" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="1810" y="232"/>
         </scene>
         <!--Search-->
         <scene sceneID="9Yk-S4-0AL">
