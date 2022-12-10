@@ -10,8 +10,6 @@ import RealmSwift
 
 class SavedRecipesViewController: UIViewController {
     
-    var arrayOfSavedRecipes:[SaveModels] = []
-    var savedModels = SaveModels().name
     let realm = try! Realm()
     var items = RecipeDetailsViewController().items
     
@@ -29,13 +27,10 @@ class SavedRecipesViewController: UIViewController {
                 
 //        tableView.reloadData()
         
-        
-
     }
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
     }
-    
     
 }
 
@@ -88,9 +83,10 @@ extension SavedRecipesViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableview: UITableView,commit editingStyle: UITableViewCell.EditingStyle,forRowAt indexPath: IndexPath) {
-        tableview.beginUpdates()
-        tableview.delegate
-        tableview.endUpdates()
+            tableview.beginUpdates()
+            RecipeDetailsViewController().didTapForHeart()
+        tableview.reloadData()
+            tableview.endUpdates()
     }
     
 }

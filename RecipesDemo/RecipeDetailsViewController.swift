@@ -28,7 +28,6 @@ class RecipeDetailsViewController: UIViewController {
     var save = SaveModels()
     var items: Results<SaveModels>!
     
-    
     //Test
     var list = [SaveModels]()
     
@@ -114,16 +113,15 @@ class RecipeDetailsViewController: UIViewController {
         
         let realm = try! Realm()
         
+        items = realm.objects(SaveModels.self)
+        
         let results = items.filter("name contains '\(String(titleLable))' ")
         
         try! realm.write{
             realm.delete(results)
         }
-        
-//        SavedRecipesViewController().self.tableView.reloadData()
-        
+                
     }
-    
     
     @IBAction func videoButton(_ sender: Any) {
         

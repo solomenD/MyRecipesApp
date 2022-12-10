@@ -39,9 +39,12 @@ class RecipesListViewController: UIViewController {
         
         let cellIdentifier = "\(RecipesTableViewCell.self)"
         tableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
+        
     }
     //In other Class
     func fetchRecipeData(query: String){
+        
+        self.tableView.tableHeaderView = createSpinerCenter()
         
         let headers = [
             "X-RapidAPI-Key": "eaf2601874msh7d7cb171c834291p1cfa96jsnef6d24d659ab",
@@ -70,15 +73,14 @@ class RecipesListViewController: UIViewController {
                     self.arrayOfRecipes = resipis.results!
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
+                        self.tableView.tableHeaderView = nil
                     }
                 } catch {
                     print(error)
                 }
                 
             }
-            
-            print("ITS OOOOKKEEEYY")
-            
+
         })
         print(dataTask)
         
@@ -114,6 +116,17 @@ extension RecipesListViewController: UITableViewDelegate, UITableViewDataSource 
         viewController.videoString = arrayOfRecipes[indexPath.row].video_url ?? ""
         navigationController?.pushViewController(viewController, animated: true)
         
+    }
+    
+    private func createSpinerCenter() -> UIView {
+        let centerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
+        
+        let spiner = UIActivityIndicatorView()
+        spiner.center = centerView.center
+        centerView.addSubview(spiner)
+        spiner.startAnimating()
+        
+        return centerView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
