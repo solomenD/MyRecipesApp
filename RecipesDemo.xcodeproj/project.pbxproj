@@ -12,6 +12,7 @@
 		67328744292D128000D26B47 /* ResipesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67328743292D128000D26B47 /* ResipesModel.swift */; };
 		67328748292D1B8600D26B47 /* AllModelExsample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67328747292D1B8600D26B47 /* AllModelExsample.swift */; };
 		6732874A292D73ED00D26B47 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 67328749292D73ED00D26B47 /* Podfile */; };
+		677233442945478A00DE121A /* lf20_njxltiss.json in Resources */ = {isa = PBXBuildFile; fileRef = 677233432945478A00DE121A /* lf20_njxltiss.json */; };
 		67B0B66E292F7C050005C189 /* RecipeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B0B66D292F7C050005C189 /* RecipeDetailsViewController.swift */; };
 		67BF97CD292D0D64005B8326 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BF97CC292D0D64005B8326 /* AppDelegate.swift */; };
 		67BF97CF292D0D64005B8326 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BF97CE292D0D64005B8326 /* SceneDelegate.swift */; };
@@ -29,6 +30,7 @@
 		67328743292D128000D26B47 /* ResipesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResipesModel.swift; sourceTree = "<group>"; };
 		67328747292D1B8600D26B47 /* AllModelExsample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllModelExsample.swift; sourceTree = "<group>"; };
 		67328749292D73ED00D26B47 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		677233432945478A00DE121A /* lf20_njxltiss.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = lf20_njxltiss.json; sourceTree = "<group>"; };
 		67B0B66D292F7C050005C189 /* RecipeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsViewController.swift; sourceTree = "<group>"; };
 		67BF97C9292D0D64005B8326 /* RecipesDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipesDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67BF97CC292D0D64005B8326 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				67328749292D73ED00D26B47 /* Podfile */,
 				67BF97D5292D0D66005B8326 /* Assets.xcassets */,
 				67BF97D7292D0D66005B8326 /* LaunchScreen.storyboard */,
+				677233432945478A00DE121A /* lf20_njxltiss.json */,
 				67BF97DA292D0D66005B8326 /* Info.plist */,
 			);
 			path = RecipesDemo;
@@ -203,6 +206,7 @@
 				67FB9B86292D8D4200848849 /* RecipesTableViewCell.xib in Resources */,
 				67BF97D6292D0D66005B8326 /* Assets.xcassets in Resources */,
 				6732874A292D73ED00D26B47 /* Podfile in Resources */,
+				677233442945478A00DE121A /* lf20_njxltiss.json in Resources */,
 				67BF97D4292D0D64005B8326 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

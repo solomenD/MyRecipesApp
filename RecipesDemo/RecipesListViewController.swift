@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Lottie
 
 class NetworkService {
     private init() { }
@@ -118,17 +118,6 @@ extension RecipesListViewController: UITableViewDelegate, UITableViewDataSource 
         
     }
     
-    private func createSpinerCenter() -> UIView {
-        let centerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
-        
-        let spiner = UIActivityIndicatorView()
-        spiner.center = centerView.center
-        centerView.addSubview(spiner)
-        spiner.startAnimating()
-        
-        return centerView
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecipesTableViewCell", for: indexPath) as? RecipesTableViewCell else {return UITableViewCell()}
 
@@ -138,6 +127,23 @@ extension RecipesListViewController: UITableViewDelegate, UITableViewDataSource 
         
         return cell
         
+    }
+     
+    //MARK: - Spiner Anomation
+    private func createSpinerCenter() -> UIView {
+        var animationView: LottieAnimationView
+        animationView = .init(name: "lf20_njxltiss")
+        
+        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = .loop
+        animationView.animationSpeed = 1.0
+        animationView.play ()
+        
+        let centerView = UIView(frame: CGRect(x: 0, y: 200, width: view.frame.size.width, height: 200))
+        centerView.addSubview(animationView)
+        animationView.frame = centerView.frame
+
+        return centerView
     }
     
 }

@@ -4,5 +4,6 @@ target 'RecipesDemo' do
 
 pod 'SDWebImage'
 pod 'RealmSwift'
+pod 'lottie-ios'
 
 end
