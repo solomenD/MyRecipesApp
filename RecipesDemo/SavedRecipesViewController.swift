@@ -24,9 +24,7 @@ class SavedRecipesViewController: UIViewController {
         
         let cellIdentifier = "\(RecipesTableViewCell.self)"
         tableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
-                
-//        tableView.reloadData()
-        
+                        
     }
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()

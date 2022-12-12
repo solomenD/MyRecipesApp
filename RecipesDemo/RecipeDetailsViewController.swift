@@ -15,10 +15,9 @@ class RecipeDetailsViewController: UIViewController {
     @IBOutlet weak var titleLableRecipe: UILabel!
     @IBOutlet weak var imageRecipe: UIImageView!
     @IBOutlet weak var shadowView: UIView!
-    @IBOutlet weak var DetailsLable: UILabel!
+    @IBOutlet weak var detailsLable: UILabel!
     @IBOutlet weak var previewImage: UIImageView!
     @IBOutlet weak var playButton: UIButton!
-    
     var titleLable = ""
     var imageString = ""
     var detailslabel = ""
@@ -28,7 +27,6 @@ class RecipeDetailsViewController: UIViewController {
     var save = SaveModels()
     var items: Results<SaveModels>!
     
-    //Test
     var list = [SaveModels]()
     
     override func viewDidLoad() {
@@ -40,7 +38,7 @@ class RecipeDetailsViewController: UIViewController {
     private func configure() {
         
         let imageURL = URL(string: imageString)
-        DetailsLable.text = detailslabel
+        detailsLable.text = detailslabel
         titleLableRecipe.text = titleLable
         imageRecipe.sd_setImage(with: imageURL)
         imageRecipe.layer.cornerRadius = 15

@@ -18,7 +18,6 @@ class RecipesTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
 
-        
     }
 
     func configure(item: Result) {

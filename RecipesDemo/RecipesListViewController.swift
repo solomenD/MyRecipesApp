@@ -8,15 +8,6 @@
 import UIKit
 import Lottie
 
-class NetworkService {
-    private init() { }
-    static let shared = NetworkService()
-    
-    func loadRecipes() {
-        
-    }
-}
-
 class RecipesListViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -27,9 +18,8 @@ class RecipesListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NetworkService.shared.loadRecipes()
-        
-        fetchRecipeData(query: "pasta")
+        loadResults(query: "Pasta")
+//        fetchRecipeData(query: "pasta")
                 
         tableView.delegate = self
         tableView.dataSource = self
@@ -41,53 +31,20 @@ class RecipesListViewController: UIViewController {
         tableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
         
     }
-    //In other Class
-    func fetchRecipeData(query: String){
+    
+    func loadResults(query: String){
         
         self.tableView.tableHeaderView = createSpinerCenter()
         
-        let headers = [
-            "X-RapidAPI-Key": "eaf2601874msh7d7cb171c834291p1cfa96jsnef6d24d659ab",
-            "X-RapidAPI-Host": "tasty.p.rapidapi.com"
-        ]
-        
-        let baseURL = "https://tasty.p.rapidapi.com/recipes/list?from=0&size="
-        let countOfResults = 20
-        
-        let request = NSMutableURLRequest(url: NSURL(string: "\(baseURL)\(String(countOfResults))&q=\(query)")! as URL,
-                                          cachePolicy: .useProtocolCachePolicy,
-                                          timeoutInterval: 10.0)
-        request.httpMethod = "GET"
-        request.allHTTPHeaderFields = headers
-        
-        let session = URLSession.shared
-        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
-            
-            if error == nil && data != nil {
-                
-                
-                let decode = JSONDecoder()
-                
-                do {
-                    let resipis = try decode.decode(Recipes.self, from: data!)
-                    self.arrayOfRecipes = resipis.results!
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                        self.tableView.tableHeaderView = nil
-                    }
-                } catch {
-                    print(error)
-                }
-                
+        NetworkService.shared.loadRecipes(query: query) { resipis in
+            self.arrayOfRecipes = resipis
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.tableView.tableHeaderView = nil
             }
-
-        })
-        print(dataTask)
-        
-        dataTask.resume()
+        }
     }
 
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
@@ -131,6 +88,8 @@ extension RecipesListViewController: UITableViewDelegate, UITableViewDataSource 
      
     //MARK: - Spiner Anomation
     private func createSpinerCenter() -> UIView {
+        let loadingLable = UILabel()
+        loadingLable.text = "Loading..."
         var animationView: LottieAnimationView
         animationView = .init(name: "lf20_njxltiss")
         
@@ -141,7 +100,11 @@ extension RecipesListViewController: UITableViewDelegate, UITableViewDataSource 
         
         let centerView = UIView(frame: CGRect(x: 0, y: 200, width: view.frame.size.width, height: 200))
         centerView.addSubview(animationView)
+        centerView.addSubview(loadingLable)
         animationView.frame = centerView.frame
+        loadingLable.frame = CGRect(x: centerView.center.x-50, y: 380, width: 100, height: 50)
+        loadingLable.textAlignment = .center
+        loadingLable.textColor = .gray
 
         return centerView
     }
@@ -154,7 +117,7 @@ extension RecipesListViewController: UISearchBarDelegate {
         if let text = searchBar.text {
             arrayOfRecipes = []
             tableView.reloadData()
-            fetchRecipeData(query: text)
+            loadResults(query: text)
         }
     }
 }
