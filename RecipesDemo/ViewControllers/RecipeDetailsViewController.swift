@@ -18,16 +18,17 @@ class RecipeDetailsViewController: UIViewController {
     @IBOutlet weak var detailsLable: UILabel!
     @IBOutlet weak var previewImage: UIImageView!
     @IBOutlet weak var playButton: UIButton!
-    var titleLable = ""
+    var titleString = ""
     var imageString = ""
-    var detailslabel = ""
+    var detailsString = ""
     var videoString = ""
-    let imageHeart = UIImage(systemName: "heart")
-    let imageHeartFill = UIImage(systemName: "heart.fill")
-    var save = SaveModels()
-    var items: Results<SaveModels>!
+    var countryString = ""
+    let imageHeart = UIImage(systemName: Resourses.Images.heartImageString)
+    let imageHeartFill = UIImage(systemName: Resourses.Images.heartFillImageString)
+    var save = RecipesSavedModels()
+    var items: Results<RecipesSavedModels>!
     
-    var list = [SaveModels]()
+    var list = [RecipesSavedModels]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +39,8 @@ class RecipeDetailsViewController: UIViewController {
     private func configure() {
         
         let imageURL = URL(string: imageString)
-        detailsLable.text = detailslabel
-        titleLableRecipe.text = titleLable
+        detailsLable.text = detailsString
+        titleLableRecipe.text = titleString
         imageRecipe.sd_setImage(with: imageURL)
         imageRecipe.layer.cornerRadius = 15
         
@@ -56,9 +57,9 @@ class RecipeDetailsViewController: UIViewController {
         imageRecipe.clipsToBounds = true
         
         if videoString == "" {
-            playButton.setImage(UIImage(named: "xmark")?.withTintColor(.white), for: .normal)
+            playButton.setImage(UIImage(named: Resourses.Images.xmarkImageString)?.withTintColor(.white), for: .normal)
         }else {
-            playButton.setImage(UIImage(named: "play_button"), for: .normal)
+            playButton.setImage(UIImage(named: Resourses.Images.playButtonImageString), for: .normal)
         }
         
         navigationController?.navigationBar.isHidden = false
@@ -68,11 +69,11 @@ class RecipeDetailsViewController: UIViewController {
         let realm = try! Realm()
         
         //MARK: - To open realm studio
-        print(Realm.Configuration.defaultConfiguration.fileURL)
+        print(Realm.Configuration.defaultConfiguration.fileURL ?? Resourses.nonResult)
         
-        items = realm.objects(SaveModels.self)
+        items = realm.objects(RecipesSavedModels.self)
         
-        let results = items.filter("name contains '\(String(titleLable))' ")
+        let results = items.filter("\(Resourses.realnNameContains) '\(String(titleString))' ")
         
         if results.count > 0 {
             
@@ -89,11 +90,11 @@ class RecipeDetailsViewController: UIViewController {
     @objc func tapForHeart() {
         rigthRedHeart(image: imageHeartFill!, color: .red, selector: #selector(didTapForHeart))
         
-        save.name = titleLable
+        save.name = titleString
         save.imageString = imageString
         save.videoString = videoString
-        save.contry = "us"
-        save.detailslabel = detailslabel
+        save.contry = countryString
+        save.detailslabel = detailsString
         save.isItSave = true
         
         let realm = try! Realm()
@@ -111,9 +112,9 @@ class RecipeDetailsViewController: UIViewController {
         
         let realm = try! Realm()
         
-        items = realm.objects(SaveModels.self)
+        items = realm.objects(RecipesSavedModels.self)
         
-        let results = items.filter("name contains '\(String(titleLable))' ")
+        let results = items.filter("\(Resourses.realnNameContains) '\(String(titleString))' ")
         
         try! realm.write{
             realm.delete(results)

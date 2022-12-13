@@ -35,7 +35,7 @@ class SavedRecipesViewController: UIViewController {
 extension SavedRecipesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        items = realm.objects(SaveModels.self)
+        items = realm.objects(RecipesSavedModels.self)
 
         if items?.count != 0 {
             return items!.count
@@ -45,10 +45,10 @@ extension SavedRecipesViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecipesTableViewCell", for: indexPath) as? RecipesTableViewCell else {return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(RecipesTableViewCell.self)", for: indexPath) as? RecipesTableViewCell else {return UITableViewCell()}
 
         let item = items?[indexPath.row]
-        let imageURL = URL(string: item?.imageString ?? "images-3")
+        let imageURL = URL(string: item?.imageString ?? Resourses.Images.nonImageString)
         cell.recipeImageView.sd_setImage(with: imageURL)
         cell.recipeNameLabel.contentMode = .scaleToFill
         cell.recipeNameLabel.numberOfLines = 2
@@ -61,16 +61,16 @@ extension SavedRecipesViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let namelabel = items?[indexPath.row].name
-        let imageURL = items?[indexPath.row].imageString!
-        let detailelabel = items?[indexPath.row].detailslabel ?? "none"
-        let videoString = items?[indexPath.row].videoString ?? ""
+        let namelabel = items?[indexPath.row].name ?? Resourses.nonResult
+        let imageURL = items?[indexPath.row].imageString ?? Resourses.nonResult
+        let detailelabel = items?[indexPath.row].detailslabel ?? Resourses.nonResult
+        let videoString = items?[indexPath.row].videoString ?? Resourses.nonResult
         let main = UIStoryboard(name: "Main", bundle: nil)
         
-        guard let viewController = main.instantiateViewController(withIdentifier: "RecipeDetailsViewController") as? RecipeDetailsViewController else { return }
-        viewController.titleLable = namelabel!
-        viewController.imageString = imageURL!
-        viewController.detailslabel = detailelabel
+        guard let viewController = main.instantiateViewController(withIdentifier: "\(RecipeDetailsViewController.self)") as? RecipeDetailsViewController else { return }
+        viewController.titleString = namelabel
+        viewController.imageString = imageURL
+        viewController.detailsString = detailelabel
         viewController.videoString = videoString
         navigationController?.pushViewController(viewController, animated: true)
         

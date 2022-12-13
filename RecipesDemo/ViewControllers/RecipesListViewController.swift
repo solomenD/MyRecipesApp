@@ -13,12 +13,14 @@ class RecipesListViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
+    let cellIdentifier = "\(RecipesTableViewCell.self)"
+    
     var arrayOfRecipes:[Result] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadResults(query: "Pasta")
+        loadResults(query: "Pizza")
 //        fetchRecipeData(query: "pasta")
                 
         tableView.delegate = self
@@ -27,7 +29,6 @@ class RecipesListViewController: UIViewController {
         
         // UITableView extension for registering cells
         
-        let cellIdentifier = "\(RecipesTableViewCell.self)"
         tableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
         
     }
@@ -61,22 +62,24 @@ extension RecipesListViewController: UITableViewDelegate, UITableViewDataSource 
    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let namelabel = arrayOfRecipes[indexPath.row].name!
-        let imageURL = arrayOfRecipes[indexPath.row].thumbnail_url!
-        let detailelabel = arrayOfRecipes[indexPath.row].description ?? "none"
+        let namelabel = arrayOfRecipes[indexPath.row].name ?? Resourses.nonResult
+        let imageURL = arrayOfRecipes[indexPath.row].thumbnail_url ?? Resourses.nonResult
+        let detailelabel = arrayOfRecipes[indexPath.row].description ?? Resourses.nonResult
+        let countryNamed = arrayOfRecipes[indexPath.row].country ?? Resourses.nonResult
         let main = UIStoryboard(name: "Main", bundle: nil)
         
-        guard let viewController = main.instantiateViewController(withIdentifier: "RecipeDetailsViewController") as? RecipeDetailsViewController else { return }
-        viewController.titleLable = namelabel
+        guard let viewController = main.instantiateViewController(withIdentifier: "\(RecipeDetailsViewController.self)") as? RecipeDetailsViewController else { return }
+        viewController.titleString = namelabel
         viewController.imageString = imageURL
-        viewController.detailslabel = detailelabel
-        viewController.videoString = arrayOfRecipes[indexPath.row].video_url ?? ""
+        viewController.detailsString = detailelabel
+        viewController.countryString = countryNamed
+        viewController.videoString = arrayOfRecipes[indexPath.row].video_url ?? Resourses.nonResult
         navigationController?.pushViewController(viewController, animated: true)
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecipesTableViewCell", for: indexPath) as? RecipesTableViewCell else {return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? RecipesTableViewCell else {return UITableViewCell()}
 
         let item = arrayOfRecipes[indexPath.row]
         cell.configure(item: item)
@@ -89,9 +92,9 @@ extension RecipesListViewController: UITableViewDelegate, UITableViewDataSource 
     //MARK: - Spiner Anomation
     private func createSpinerCenter() -> UIView {
         let loadingLable = UILabel()
-        loadingLable.text = "Loading..."
+        loadingLable.text = Resourses.loadingString
         var animationView: LottieAnimationView
-        animationView = .init(name: "lf20_njxltiss")
+        animationView = .init(name: Resourses.loadingAnimationName)
         
         animationView.contentMode = .scaleAspectFit
         animationView.loopMode = .loop

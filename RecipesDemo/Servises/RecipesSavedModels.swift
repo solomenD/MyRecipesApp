@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class SaveModels: Object {
+class RecipesSavedModels: Object {
     
     @objc dynamic var name: String?
     @objc dynamic var imageString: String?
