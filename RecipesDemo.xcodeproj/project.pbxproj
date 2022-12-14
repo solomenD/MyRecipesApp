@@ -16,6 +16,7 @@
 		67723346294650E700DE121A /* NetworkServise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67723345294650E700DE121A /* NetworkServise.swift */; };
 		6772334A2947F1B200DE121A /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677233492947F1B200DE121A /* Resources.swift */; };
 		67B0B66E292F7C050005C189 /* RecipeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B0B66D292F7C050005C189 /* RecipeDetailsViewController.swift */; };
+		67B388F12949E2D50012D794 /* ColorExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B388F02949E2D50012D794 /* ColorExtention.swift */; };
 		67BF97CD292D0D64005B8326 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BF97CC292D0D64005B8326 /* AppDelegate.swift */; };
 		67BF97CF292D0D64005B8326 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BF97CE292D0D64005B8326 /* SceneDelegate.swift */; };
 		67BF97D1292D0D64005B8326 /* RecipesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BF97D0292D0D64005B8326 /* RecipesListViewController.swift */; };
@@ -36,6 +37,7 @@
 		67723345294650E700DE121A /* NetworkServise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServise.swift; sourceTree = "<group>"; };
 		677233492947F1B200DE121A /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		67B0B66D292F7C050005C189 /* RecipeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsViewController.swift; sourceTree = "<group>"; };
+		67B388F02949E2D50012D794 /* ColorExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtention.swift; sourceTree = "<group>"; };
 		67BF97C9292D0D64005B8326 /* RecipesDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipesDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67BF97CC292D0D64005B8326 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		67BF97CE292D0D64005B8326 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +96,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		67B388EF2949E2B60012D794 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				67B388F02949E2D50012D794 /* ColorExtention.swift */,
+			);
+			path = Extentions;
+			sourceTree = "<group>";
+		};
 		67BF97C0292D0D64005B8326 = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +125,7 @@
 		67BF97CB292D0D64005B8326 /* RecipesDemo */ = {
 			isa = PBXGroup;
 			children = (
+				67B388EF2949E2B60012D794 /* Extentions */,
 				67FB9B82292D8CFD00848849 /* Cell */,
 				67328742292D126800D26B47 /* Models */,
 				67FE2535293E758A00DDE004 /* Servises */,
@@ -282,6 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67B388F12949E2D50012D794 /* ColorExtention.swift in Sources */,
 				67BF97D1292D0D64005B8326 /* RecipesListViewController.swift in Sources */,
 				67328744292D128000D26B47 /* ResipesModel.swift in Sources */,
 				67BF97CD292D0D64005B8326 /* AppDelegate.swift in Sources */,
@@ -448,7 +460,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -478,7 +490,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

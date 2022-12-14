@@ -13,12 +13,21 @@ class RecipesListViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
+    let imageView: UIImageView = {
+        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        image.image = UIImage(named: "appImagee")
+        return image
+    }()
+    
     let cellIdentifier = "\(RecipesTableViewCell.self)"
     
     var arrayOfRecipes:[Result] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        imageView.center = view.center
+        view.addSubview(imageView)
+        animationLaunchScreen()
         
         loadResults(query: "Pizza")
 //        fetchRecipeData(query: "pasta")
@@ -31,6 +40,18 @@ class RecipesListViewController: UIViewController {
         
         tableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
         
+    }
+    
+    func animationLaunchScreen() {
+        UIView.animate(withDuration: 1){
+            let size = self.view.frame.size.width * 2
+            let xpostion = size - self.view.frame.width
+            let ypostion = self.view.frame.height - size
+          
+            self.imageView.frame = CGRect(x: -(xpostion/2), y: ypostion/2, width: size, height: size)
+            self.imageView.alpha = 0
+            
+        }
     }
     
     func loadResults(query: String){

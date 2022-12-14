@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum Resourses {
     static let nonResult = "none"

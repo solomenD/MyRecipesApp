@@ -254,7 +254,7 @@
                         <color key="tintColor" red="0.15294116739999999" green="0.15294116739999999" blue="0.15294116739999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBar>
                     <connections>
-                        <segue destination="m08-B5-9lv" kind="relationship" relationship="viewControllers" id="4AC-31-JOk"/>
+                        <segue destination="m08-B5-9lv" kind="relationship" relationship="viewControllers" destinationCreationSelector="segue" id="4AC-31-JOk"/>
                         <segue destination="9yv-7X-AJi" kind="relationship" relationship="viewControllers" id="ZQC-Vc-LAX"/>
                     </connections>
                 </tabBarController>

@@ -33,20 +33,13 @@ struct Rendition: Codable {
 //    let display_text: String?
 //}
 struct Instruction: Codable {
-    let displayText: String?
-    let startTime: Int?
+    let display_text: String?
+    let start_time: Int?
     let appliance: Appliance?
-    let endTime: Int?
+    let end_time: Int?
     let temperature: Int?
     let id, position: Int?
 
-    enum CodingKeys: String, CodingKey {
-        case displayText = "display_text"
-        case startTime = "start_time"
-        case appliance
-        case endTime = "end_time"
-        case temperature, id, position
-    }
 }
 enum Appliance: String, Codable {
     case foodThermometer = "food_thermometer"
