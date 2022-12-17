@@ -144,23 +144,3 @@ extension RecipeDetailsViewController {
     }
 }
 
-//MARK: - Not working with format video ??
-//    func getthumbnailFromImage(url: URL, completion: @escaping ((_ image: UIImage)-> Void)) {
-//        DispatchQueue.global ().async {
-//            let asset = AVAsset (url: url)
-//            let avAssetImageGenerator = AVAssetImageGenerator(asset: asset)
-//            avAssetImageGenerator.appliesPreferredTrackTransform = true
-//            let thumbnailTime = CMTimeMake(value: 7, timescale: 1)
-//            do {
-//                let cgThumbImage = try avAssetImageGenerator.copyCGImage(at: thumbnailTime,
-//                                                                         actualTime: nil)
-//                let thumbImage = UIImage (cgImage: cgThumbImage)
-//                DispatchQueue.main.async {
-//                    completion(thumbImage)
-//                }
-//            } catch {
-//                print(error.localizedDescription)
-//            }
-//        }
-//    }
-

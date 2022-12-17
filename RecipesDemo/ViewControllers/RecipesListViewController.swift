@@ -15,7 +15,7 @@ class RecipesListViewController: UIViewController {
     
     let imageView: UIImageView = {
         let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        image.image = UIImage(named: "appImagee")
+        image.image = UIImage(named: Resourses.Images.appImagee)
         return image
     }()
     
@@ -29,14 +29,15 @@ class RecipesListViewController: UIViewController {
         view.addSubview(imageView)
         animationLaunchScreen()
         
+//  Start App with Pizza resipes
+        
         loadResults(query: "Pizza")
-//        fetchRecipeData(query: "pasta")
                 
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
         
-        // UITableView extension for registering cells
+// UITableView extension for registering cells
         
         tableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
         

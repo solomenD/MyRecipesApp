@@ -20,5 +20,7 @@ enum Resourses {
         static let heartImageString = "heart"
         static let heartFillImageString = "heart.fill"
         static let nonImageString = "nonImage"
+        static let none = "images-3"
+        static let appImagee = "appImagee"
     }
 }
